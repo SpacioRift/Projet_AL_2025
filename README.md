@@ -14,7 +14,12 @@ Dans le fichier php.ini ajouter les lignes suivantes, si celle-ci n'existent pas
 openssl.cafile=/etc/ssl/certs/cacert.pem
 curl.cainfo=/etc/ssl/certs/cacert.pem
 
+Si l'installation ne fonctionne toujours pas installer oppenSSL : https://slproweb.com/products/Win32OpenSSL.html
+Sinon désactiver votre anti-virus
+
 Installer Symfony via la commande Scoop sduivante : "scoop install symfony-cli"
+
+puis initialiser le projet symfony avec la commande suivante : "symfony new api"
 
 # Initialisation du client QUASAR
 
