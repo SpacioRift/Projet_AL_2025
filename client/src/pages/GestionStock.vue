@@ -1,0 +1,23 @@
+<template>
+    <q-page class="q-pa-md">
+        <q-card>
+        <q-card-section>
+            <div class="text-h6">Gestion de Stock</div>
+        </q-card-section>
+    
+        <q-separator />
+    
+        <q-card-section>
+            <p>Bienvenue dans la gestion de stock. Vous pouvez ajouter, modifier ou supprimer des articles.</p>
+        </q-card-section>
+    
+        <q-card-actions align="right">
+            <q-btn color="primary" label="Ajouter un article" />
+        </q-card-actions>
+        </q-card>
+    </q-page>
+</template>
+
+<script setup> 
+
+</script>

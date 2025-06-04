@@ -39,9 +39,11 @@
       </q-list>
     </q-drawer>
 
+    <!-- This is where the Pages are injected -->
     <q-page-container>
       <router-view />
     </q-page-container>
+
   </q-layout>
 </template>
 
@@ -50,6 +52,13 @@ import { ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
+  {
+    title: 'Niveau des stocks',
+    caption: 'Gestion des stocks',
+    icon: 'inventory',
+    link: '',
+    to: 'gestionStock'
+  },
   {
     title: 'Docs',
     caption: 'quasar.dev',
