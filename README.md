@@ -17,9 +17,17 @@ curl.cainfo=/etc/ssl/certs/cacert.pem
 Si l'installation ne fonctionne toujours pas installer oppenSSL : https://slproweb.com/products/Win32OpenSSL.html
 Sinon désactiver votre anti-virus
 
+Désactive temporairement la vérification SSL avec Composer :
+composer config --global disable-tls true
+
+Réactive la vérification SSL avec Composer :
+composer config --global disable-tls false
+
 Installer Symfony via la commande Scoop sduivante : "scoop install symfony-cli"
 
 puis initialiser le projet symfony avec la commande suivante : "symfony new api"
+
+composer require symfony/serializer symfony/http-foundation doctrine orm symfony/maker-bundle
 
 # Initialisation du client QUASAR
 
