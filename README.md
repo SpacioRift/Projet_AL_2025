@@ -1,33 +1,12 @@
 # Projet_AL_2025
-Développement d'une application de gestion des stocks en Symfony et Vue.SJ.
+Développement d'une application de gestion des stocks en Node.JS et Vue.JS.
 
 # Initialisation du projet Symfony et installation des logiciels.
 
 Utilisation d'une base de donée MySQL et de DBeaver pour l'aspect gestion de la base.
-Utilisation de Wamp et de Composer avec PHP 8.2
+Utilisation de Wamp PHP 8.2
 
-Lors de l'installation de composer si vous avez une erreur de type "OpenSSL failed with a 'certificate verify failed' error."
-Ouvrez le lien suivant : http://curl.haxx.se/ca/cacert.pem 
-Une fois le Cacert.pem téléchargé : il faut le placer dans Wamp et vérifier le fichier php.ini situé "Wamp64\bin\php\php8.2.13\"
-Dans le fichier php.ini ajouter les lignes suivantes, si celle-ci n'existent pas (Modifier le chemin d'accès vers votre cacert): 
-
-openssl.cafile=/etc/ssl/certs/cacert.pem
-curl.cainfo=/etc/ssl/certs/cacert.pem
-
-Si l'installation ne fonctionne toujours pas installer oppenSSL : https://slproweb.com/products/Win32OpenSSL.html
-Sinon désactiver votre anti-virus
-
-Désactive temporairement la vérification SSL avec Composer :
-composer config --global disable-tls true
-
-Réactive la vérification SSL avec Composer :
-composer config --global disable-tls false
-
-Installer Symfony via la commande Scoop sduivante : "scoop install symfony-cli"
-
-puis initialiser le projet symfony avec la commande suivante : "symfony new api"
-
-composer require symfony/serializer symfony/http-foundation doctrine orm symfony/maker-bundle
+Installation de node js : 
 
 # Initialisation du client QUASAR
 
