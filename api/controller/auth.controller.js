@@ -8,7 +8,7 @@ exports.signin = (req, res, next) => {
     try {
         User.create({
             email: req.body.email,
-            nickname: req.body.nickname,
+            privilege: req.body.privilege,
             password: hash
         }).then(user => {
             res.status(201).json({ message: "Utilisateur créé" });
@@ -34,7 +34,8 @@ exports.login = async (req, res, next) => {
             email: user.email,
             jwt: jwt.sign({
                 email: user.email,
-                id: user.id
+                id: user.id,
+                role: user.privilege
             }, process.env.JWT_TOKEN)
         });
     } catch (error) {
