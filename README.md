@@ -23,6 +23,9 @@ npm  install check-password-complexity
 
 "node server" pour lancer le server
 
+Ne pas oublier de set le fichier .env avec les variables suivantes : 
+SERVER_PORT | BDD_NAME | BDD_USER | BDD_PASSWORD | BDD_HOST | JWT_SECRET
+
 # Initialisation du client QUASAR
 
 à la racine du projet installer quasar CLI te créer le dossier client pendant pendant l'installation: 
