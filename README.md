@@ -8,6 +8,21 @@ Utilisation de Wamp PHP 8.2
 
 Installation de node js : 
 
+npm init (créer le projet)
+npm install express
+création du server
+creation du app
+creation des routes
+npm i express
+npm i mysql2
+npm i sequelize
+npm i jsonwebtoken
+npm i bcrypt 
+npm i multer
+npm  install check-password-complexity
+
+"node server" pour lancer le server
+
 # Initialisation du client QUASAR
 
 à la racine du projet installer quasar CLI te créer le dossier client pendant pendant l'installation: 
@@ -15,4 +30,4 @@ Installation de node js :
 npm i -g @quasar/cli
 npm init quasar@latest
 
-Se placer sur le chemin client "\Projet_Al_2025\client" et effectuer "npm run dev" pour lancer l'application
+Se placer sur le chemin client "\Projet_Al_2025\client" et effectuer "npm run dev" pour lancer l'application 
