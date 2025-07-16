@@ -1,4 +1,4 @@
-const {bdd} = require('../framework/connection');
+const {bdd} = require('../framework/connexion');
 const {DataTypes} = require('sequelize');
 
 const Stock = bdd.define(
