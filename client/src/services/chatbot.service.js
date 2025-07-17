@@ -77,8 +77,9 @@ Je suis actuellement en mode hors ligne avec des réponses de base.
       })
       this.isOnline = response.ok
       return this.isOnline
-    } catch (error) {
+    } catch (e) {
       this.isOnline = false
+      console.log("API hors ligne, utilisation du mode hors ligne :", e)
       return false
     }
   }

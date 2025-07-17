@@ -141,7 +141,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick, watch } from 'vue'
+import { ref, onMounted, nextTick} from 'vue'
 import { useQuasar } from 'quasar'
 import ChatbotService from '../services/chatbot.service.js'
 
@@ -240,8 +240,8 @@ const sendMessage = async () => {
     // Ajouter la réponse
     addMessage('assistant', response.message)
     
-  } catch (error) {
-    console.error('Erreur chatbot:', error)
+  } catch (e) {
+    console.log('Erreur chatbot:', e)
     addMessage('assistant', '❌ Désolé, une erreur est survenue. Veuillez réessayer.')
   } finally {
     isTyping.value = false
