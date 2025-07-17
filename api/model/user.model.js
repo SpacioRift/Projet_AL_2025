@@ -1,26 +1,26 @@
-const {bdd} = require('./connexion.js');
-const {dataTypes} = require('sequelize');
+const { bdd } = require("../framework/connexion.js")
+const { DataTypes } = require("sequelize")
 
-const User = bdd.define('user', {
-    nom: {
-        type: dataTypes.STRING,
-        allowNull: false
-    },
-    prenom: {
-        type: dataTypes.STRING,
-        allowNull: false
-    },
-    email: {
-        type: dataTypes.STRING,
-        allowNull: false,
-    },
-    password: {
-        type: dataTypes.STRING,
-        allowNull: false
-    },
-    privilege: {
-        type: dataTypes.STRING,
-    }
+const User = bdd.define("user", {
+  nom: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  prenom: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  privilege: {
+    type: DataTypes.STRING,
+  },
 })
 
-module.exports = User;
+module.exports = User

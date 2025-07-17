@@ -44,12 +44,16 @@
       <router-view />
     </q-page-container>
 
+    <!-- Chatbot -->
+    <ChatBot />
+
   </q-layout>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import ChatBot from 'components/ChatBot.vue'
 
 const linksList = [
   {
