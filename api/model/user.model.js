@@ -1,7 +1,8 @@
 const { bdd } = require("../framework/connexion.js")
 const { DataTypes } = require("sequelize")
 
-const User = bdd.define("user", {
+const User = bdd.define(
+  "user", {
   nom: {
     type: DataTypes.STRING,
     allowNull: false,

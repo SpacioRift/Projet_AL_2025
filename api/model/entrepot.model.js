@@ -4,11 +4,7 @@ const {DataTypes} = require('sequelize');
 const Entrepot = bdd.define(
     'entrepot',
     {
-        id_e: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
+        
         nom_e: {
             type: DataTypes.STRING(255),
             allowNull: false

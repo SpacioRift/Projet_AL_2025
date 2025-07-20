@@ -4,11 +4,7 @@ const {DataTypes} = require('sequelize');
 const Fournisseur = bdd.define(
     'fournisseur',
     {
-        id_f: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
+        
         nom_f: {
             type: DataTypes.STRING(255),
             allowNull: false

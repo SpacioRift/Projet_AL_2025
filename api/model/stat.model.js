@@ -4,11 +4,7 @@ const {DataTypes} = require('sequelize');
 const Stat = bdd.define(
     'stat',
     {
-        id_st: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
+        
         quantite_st: {
             type: DataTypes.INTEGER,
             allowNull: false

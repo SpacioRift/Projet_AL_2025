@@ -4,11 +4,7 @@ const {DataTypes} = require('sequelize');
 const Commande = bdd.define(
     'commande',
     {
-        id_c: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
+
         produit_c: {
             type: DataTypes.STRING(255),
             allowNull: false

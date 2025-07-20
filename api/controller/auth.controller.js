@@ -3,42 +3,50 @@ const User = require("./../model/user.model.js");
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-exports.signin = (req, res, next) => {
-    let hash = bcrypt.hashSync(req.body.password, 10)
-    try {
-        User.create({
-            email: req.body.email,
-            privilege: req.body.privilege,
-            password: hash
-        }).then(user => {
-            res.status(201).json({ message: "Utilisateur créé" });
-        }).catch(error => {
-            res.status(500).json({ message: error });
-        })
 
-    } catch (error) {
-        res.status(500).json(error);
-    }
-}
+exports.signin = async (req, res, next) => {
+  try {
+    const { nom, prenom, email, password, privilege } = req.body;
+
+    const hash = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      nom,
+      prenom,
+      email,
+      privilege,
+      password: hash
+    });
+
+    res.status(201).json({ message: "Administrateur créé", user });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 
 exports.login = async (req, res, next) => {
-    try {
-        let user = await User.findOne({ email: req.body.email });
-        if (!user) {
-            res.status(401).json({ message: "Identifiant ou mot de passe incorrect" });
-        }
-        if (!bcrypt.compareSync(req.body.password, user.password)) {
-            res.status(401).json({ message: "Identifiant ou mot de passe incorrect" });
-        }
-        res.status(200).json({
-            email: user.email,
-            jwt: jwt.sign({
-                email: user.email,
-                id: user.id,
-                role: user.privilege
-            }, process.env.JWT_TOKEN)
-        });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+  try {
+    const { email, password } = req.body;
+    
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(401).json({ error: "Identifiant ou mot de passe incorrect" });
     }
-}
+    
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      return res.status(401).json({ error: "Identifiant ou mot de passe incorrect" });
+    }
+    
+    const token = jwt.sign(
+      { id: user.id, role: user.privilege },
+      process.env.JWT_TOKEN,
+      { expiresIn: "1h" }
+    );
+    
+    res.status(200).json({ token });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

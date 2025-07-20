@@ -1,21 +1,31 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const auth = (role) => {
-    return (req,res,next) => {
-        if(!req.headers?.authorization){
-            throw new Error('token missing');
+const authenticate = (req, res, next) => {
+    if (!req.headers?.authorization) {
+        return res.status(401).json({ error: 'Token missing' });
+    }
+    const token = req.headers.authorization.split(" ")[1];
+    try {
+        const result = jwt.verify(token, process.env.JWT_SECRET || 'RVNHSS0zQUwtTk9ERUpT');
+        req.user = result; 
+        next();
+    } catch (error) {
+        return res.status(401).json({ error: 'Invalid token' });
+    }
+};
+
+const authorize = (role) => {
+    return (req, res, next) => {
+        if (!req.user) {
+            return res.status(401).json({ error: 'Not authenticated' });
         }
-        const token = req.headers.authorization.split(" ")[1];
-        let result = jwt.verify(token,'RVNHSS0zQUwtTk9ERUpT');
-        if(!result){
-            throw new Error('token invalid');
-        }
-        if(!result.role.some(r => r.code === role)){
-            throw new Error('forbiden');
+        
+        if (req.user.privilege_u !== role) {
+            return res.status(403).json({ error: 'Forbidden' });
         }
         next();
-    }
-}
+    };
+};
 
-module.exports = auth;
+module.exports = { authenticate, authorize };
