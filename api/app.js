@@ -9,12 +9,14 @@ const entrepotRoute = require('./route/entrepot.route');
 const fournisseurRoute = require('./route/fournisseur.route');
 const { connect } = require('./framework/connexion');
 const sync = require('./framework/sync');
+const dataset = require('./framework/dataset');
 
 const app = express();
 
 const database = async () => {
     await connect();
     await sync();
+    await dataset();
 }
 database();
 
