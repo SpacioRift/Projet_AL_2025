@@ -1,11 +1,11 @@
 const bcrypt = require('bcrypt');
-const User = require("./model/user.model.js");
-const Product = require("./model/product.model.js");
-const Stock = require("./model/stock.model.js");
-const Entrepot = require("./model/entrepot.model.js");
-const Commande = require("./model/commande.model.js");
-const Stat = require("./model/stat.model.js");
-const Fournisseur = require("./model/fournisseur.model.js");
+const User = require("../model/user.model.js");
+const Product = require("../model/product.model.js");
+const Stock = require("../model/stock.model.js");
+const Entrepot = require("../model/entrepot.model.js");
+const Commande = require("../model/commande.model.js");
+const Stat = require("../model/stat.model.js");
+const Fournisseur = require("../model/fournisseur.model.js");
 
 const dataset = async () => {
     await User.create({
