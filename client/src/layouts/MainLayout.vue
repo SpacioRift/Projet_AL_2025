@@ -56,11 +56,18 @@ import ChatBot from 'components/ChatBot.vue'
 
 const linksList = [
   {
+    title: 'Statistiques',
+    caption: 'Analyses et graphiques',
+    icon: 'analytics',
+    link: '',
+    to: '/statistiques'
+  },
+  {
     title: 'Niveau des stocks',
     caption: 'Gestion des stocks',
     icon: 'inventory',
     link: '',
-    to: 'gestionStock'
+    to: '/gestionStock'
   }
 ]
 
