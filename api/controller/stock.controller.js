@@ -26,3 +26,14 @@ exports.getAll = async (req, res, next) => {
     let stockList = await Stock.findAll();
     res.status(200).json(stockList);
 }
+
+exports.getCriticalStocks = async (req, res, next) => {
+    let criticalStocks = await Stock.findAll({
+        where: {
+            quantity: {
+                [Op.lt]: 10 // Assuming critical stock is defined as having less than 10 items
+            }
+        }
+    });
+    res.status(200).json(criticalStocks);
+}
