@@ -69,6 +69,13 @@ const userRole = ref(null)
 // Tous les liens disponibles
 const allLinks = [
   {
+    title: 'Dashboard',
+    caption: 'Vue d\'ensemble des stocks',
+    icon: 'dashboard',
+    link: '',
+    to: '/'
+  },
+  {
     title: 'Statistiques',
     caption: 'Analyses et graphiques',
     icon: 'analytics',
@@ -140,10 +147,10 @@ function toggleLeftDrawer () {
 // Vérifier l'auth au montage et écouter les changements
 onMounted(() => {
   checkAuth()
-  
+
   // Écouter les changements de localStorage pour mettre à jour l'état
   window.addEventListener('storage', checkAuth)
-  
+
   // Vérifier périodiquement l'état d'authentification
   setInterval(checkAuth, 5000)
 })
