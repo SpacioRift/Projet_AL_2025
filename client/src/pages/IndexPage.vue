@@ -49,8 +49,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-require('dotenv').config()
+import { ref, onMounted } from 'vue';
 
 const globalStocks = ref(null)
 const criticalStocks = ref([])
