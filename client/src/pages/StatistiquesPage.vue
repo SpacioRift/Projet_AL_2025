@@ -192,7 +192,7 @@ const loadCategories = async () => {
   try {
     const response = await fetch('/product')
     const products = await response.json()
-    
+
     const categories = [...new Set(products.map(p => p.categorie_p).filter(Boolean))]
     categoryOptions.value = [
       { label: 'Toutes les catégories', value: 'Toutes' },
@@ -219,7 +219,7 @@ const loadSummaryStats = async () => {
   try {
     const response = await fetch('/stat/summary')
     const data = await response.json()
-    
+
     totalEntries.value = data.totalEntries
     totalExits.value = data.totalExits
     totalProducts.value = data.totalProducts
@@ -241,16 +241,16 @@ const loadChartData = async () => {
       fetch(`/stat/top-products?period=${selectedPeriod.value}&category=${selectedCategory.value}`),
       fetch(`/stat/sales-evolution?period=${selectedPeriod.value}&category=${selectedCategory.value}`)
     ])
-    
+
     const entriesExitsData = await entriesExitsRes.json()
     const topProductsData = await topProductsRes.json()
     const evolutionData = await evolutionRes.json()
-    
+
     chartData.value.entries = entriesExitsData.entries
     chartData.value.exits = entriesExitsData.exits
     chartData.value.topProducts = topProductsData.slice(0, Math.min(6, topProductsData.length))
     chartData.value.salesEvolution = evolutionData
-    
+
   } catch (error) {
     console.error('Erreur lors du chargement des données graphiques:', error)
     // Données simulées en fallback
@@ -291,9 +291,9 @@ const initializeCharts = () => {
 // Créer le graphique en barres
 const createBarChart = () => {
   if (!barChart.value) return
-  
+
   const ctx = barChart.value.getContext('2d')
-  
+
   barChartInstance = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -335,13 +335,13 @@ const createBarChart = () => {
 // Créer le camembert
 const createPieChart = () => {
   if (!pieChart.value) return
-  
+
   const ctx = pieChart.value.getContext('2d')
-  
+
   const colors = [
     '#7f9ba5', '#3d4c58', '#becacf', '#9ec4d2', '#a3b1bb', '#21BA45'
   ]
-  
+
   pieChartInstance = new Chart(ctx, {
     type: 'pie',
     data: {
@@ -368,9 +368,9 @@ const createPieChart = () => {
 // Créer le graphique linéaire
 const createLineChart = () => {
   if (!lineChart.value) return
-  
+
   const ctx = lineChart.value.getContext('2d')
-  
+
   lineChartInstance = new Chart(ctx, {
     type: 'line',
     data: {
@@ -409,13 +409,13 @@ const updateCharts = () => {
     barChartInstance.data.datasets[1].data = chartData.value.exits
     barChartInstance.update()
   }
-  
+
   if (pieChartInstance) {
     pieChartInstance.data.labels = chartData.value.topProducts.map(p => p.name)
     pieChartInstance.data.datasets[0].data = chartData.value.topProducts.map(p => p.sales)
     pieChartInstance.update()
   }
-  
+
   if (lineChartInstance) {
     lineChartInstance.data.labels = chartData.value.salesEvolution.map(s => s.month)
     lineChartInstance.data.datasets[0].data = chartData.value.salesEvolution.map(s => s.sales)
@@ -432,40 +432,114 @@ const resetFilters = () => {
 </script>
 
 <style scoped>
+.q-page {
+  background: #fff;
+  min-height: 100vh;
+}
+
+.text-h5, .text-h6 {
+  font-family: 'Montserrat', 'Roboto', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.q-card {
+  border-radius: 16px;
+  box-shadow: 0 2px 12px 0 rgba(127,155,165,0.06);
+  border: 1.5px solid #dbe5ea;
+  background: #f7fafc;
+  color: #3d4c58;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.q-card:hover {
+  box-shadow: 0 4px 24px 0 rgba(127,155,165,0.12);
+  border-color: #b7c7d1;
+}
+
+.q-card-section {
+  padding: 22px 18px;
+}
+
 .chart-card {
-  height: 400px;
+  height: 370px;
+  background: linear-gradient(120deg, #f7fafc 0%, #eaf1f5 100%);
+  border: 1.5px solid #dbe5ea;
+  color: #3d4c58;
+}
+
+.chart-container, .chart-container-large {
+  position: relative;
+  width: 100%;
+  background: #f7fafc;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px 0 rgba(127,155,165,0.04);
+  border: 1.5px solid #dbe5ea;
+  padding: 10px;
+  overflow: hidden;
+  color: #3d4c58;
 }
 
 .chart-container {
-  position: relative;
-  height: 300px;
-  width: 100%;
+  height: 260px;
 }
 
 .chart-container-large {
-  position: relative;
-  height: 400px;
-  width: 100%;
+  height: 300px;
+  border: 2px solid #b7c7d1;
+  box-shadow: 0 2px 16px 0 rgba(127,155,165,0.08);
 }
 
 .chart-container canvas,
 .chart-container-large canvas {
   max-width: 100%;
   max-height: 100%;
+  display: block;
+  background: transparent;
 }
 
-/* Responsive : sur mobile, les graphiques s'empilent */
+.text-positive {
+  color: #7f9ba5 !important;
+}
+
+.text-negative {
+  color: #C10015 !important;
+}
+
+.text-grey-6 {
+  color: #7f9ba5 !important;
+}
+
+.q-select, .q-btn {
+  font-family: 'Montserrat', 'Roboto', sans-serif;
+}
+
+.q-btn[outline] {
+  border-radius: 8px;
+  border: 1px solid #7f9ba5;
+  color: #7f9ba5;
+  background: #f7fafc;
+  transition: background 0.2s;
+}
+
+.q-btn[outline]:hover {
+  background: #eaf1f5;
+  color: #3d4c58;
+}
+
 @media (max-width: 768px) {
   .chart-card {
-    height: 350px;
+    height: 240px;
   }
-  
   .chart-container {
-    height: 250px;
+    height: 120px;
   }
-  
   .chart-container-large {
-    height: 300px;
+    height: 160px;
+    border-width: 1.5px;
+  }
+  .q-card-section {
+    padding: 12px 8px;
   }
 }
 </style>
