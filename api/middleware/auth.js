@@ -7,7 +7,7 @@ const authenticate = (req, res, next) => {
     }
     const token = req.headers.authorization.split(" ")[1];
     try {
-        const result = jwt.verify(token, process.env.JWT_SECRET);
+        const result = jwt.verify(token, process.env.JWT_SECRET || 'RVNHSS0zQUwtTk9ERUpT');
         req.user = result; 
         next();
     } catch (error) {
