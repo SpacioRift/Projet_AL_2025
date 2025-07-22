@@ -10,8 +10,8 @@ def install_requirements():
 def check_env_variables():
     print("Vérification des variables d'environnement...")
     
-    mistral_key = os.getenv("MISTRAL_API_KEY", "DiTt4dmSU5aBmpfExtkWemtwx8FLNL0C")
-    if mistral_key == "DiTt4dmSU5aBmpfExtkWemtwx8FLNL0C":
+    mistral_key = os.getenv("MISTRAL_API_KEY", "xpDQGIUEC8BCHAopm6HnjhM673m2gYWh")
+    if mistral_key == "xpDQGIUEC8BCHAopm6HnjhM673m2gYWh":
         print("Clé API Mistral configurée par défaut!")
     else:
         print("Clé API Mistral personnalisée détectée!")
