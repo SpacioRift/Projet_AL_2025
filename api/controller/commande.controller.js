@@ -8,17 +8,17 @@ exports.create = async (req, res, next) => {
 exports.update = async (req, res, next) => {
     let commande = await Commande.update({
         ...req.body.commande
-    }, { where: { id_c: req.params.id } });
+    }, { where: { id: req.params.id } });
     res.status(201).json(commande);
 }
 
 exports.delete = async (req, res, next) => {
-    await Commande.destroy({ where: { id_c: req.params.id } });
+    await Commande.destroy({ where: { id: req.params.id } });
     res.status(200).json({ message: "Commande supprimée" });
 }
 
 exports.getById = async (req, res, next) => {
-    let commande = await Commande.findOne({ where: { id_c: req.params.id } });
+    let commande = await Commande.findOne({ where: { id: req.params.id } });
     res.status(200).json(commande);
 }
 

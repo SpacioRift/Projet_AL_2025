@@ -1,3 +1,4 @@
+
 const Stat = require("../model/stat.model")
 const Product = require("../model/product.model")
 const Stock = require("../model/stock.model")
